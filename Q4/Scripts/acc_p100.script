@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH --partition=gpu
+#SBATCH --nodes=1
+#SBATCH --gres=gpu:k40m:1
+#SBATCH --time=01:00:00
+#SBATCH --job-name=gpu_run
+#SBATCH --mem=4GB
+#SBATCH --ntasks=1
+#SBATCH --output=myjob.%j.out
+#SBATCH --error=myjob.%j.err
+#SRUN /scratch/rush.e/HPC_HW5/Q4/acc
