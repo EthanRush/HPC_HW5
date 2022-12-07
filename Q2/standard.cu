@@ -90,7 +90,7 @@ dim3 threadsPerBlock(N,N,N);
     cudaMalloc(&d_b, bytes);
 
 	 int i,j,k;
-	 float a[n][n][n], b[n][n][n];  
+	 float a[N][N][N], b[N][N][N];  
     // Initialize vectors on host
     for( i = 0; i < n; i++ ) {
         h_b[i] = i;
