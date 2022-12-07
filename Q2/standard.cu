@@ -21,7 +21,7 @@ double CLOCK() {
 
 
 // Following the HW structure, b_d is the data matrix and a_d will be the result matrix
-__global__ void stencil(float *b_d, float *a_d) {
+__global__ void stencil(float *d_b, float *d_a) {
 	int i, j, k, i000, im100, ip100, i0m10, i0p10, i00m1, i00p1;
 	 // find i and j indices of this thread	 
 	i = blockIdx.x * blockDim.x + threadIdx.x; 
@@ -58,9 +58,9 @@ __global__ void stencil(float *b_d, float *a_d) {
 	if (i > 0 && i < N-1 && j > 0 && j < N-1 && k> 0 && k < N-1) {
 	
 	// update temperatures
-	a[i000] =  0.8*(b[im100] + b[ip100] 
-					+ b[i0m10] + b[i0p10]
-					+ b[i00m1] + b[i00p1]);
+	d_a[i000] =  0.8*(d_b[im100] + d_b[ip100] 
+					+ d_b[i0m10] + d_b[i0p10]
+					+ d_b[i00m1] + d_b[i00p1]);
 	}
 }
 
