@@ -79,7 +79,7 @@ dim3 threadsPerBlock(N,N,N);
   
  
 	// Size, in bytes, of each vector
-    size_t bytes = n*sizeof(double);
+    size_t bytes = N*sizeof(double);
  
 	 // Allocate memory for each vector on host
     h_a = (float*)malloc(bytes);
@@ -89,12 +89,12 @@ dim3 threadsPerBlock(N,N,N);
     cudaMalloc(&d_a, bytes);
     cudaMalloc(&d_b, bytes);
 
-	 int i;
+	 int i,j,k;
 	 float a[n][n][n], b[n][n][n];  
     // Initialize vectors on host
     for( i = 0; i < n; i++ ) {
         h_b[i] = i;
-		b[i] = i
+		b[i] = i;
     }
 
 	
