@@ -136,11 +136,11 @@ for (i=1; i<N-1; i++)
 			continue;
 			}
 			else{
-				printf("Answer incorrect");
+				printf("Answer incorrect, %f != %f", a[i][j][k], h_a[ind]);
 				return -1;
 			}
      }  
-	 printf("Wow all the numbers were the same, here's proof %d == %d", a[1][2][3], h_a[292]);
+	 printf("Wow all the numbers were the same, here's proof %f == %f", a[1][2][3], h_a[292]);
 
 	// Release device memory
     cudaFree(d_a);
