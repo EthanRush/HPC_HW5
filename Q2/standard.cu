@@ -7,8 +7,7 @@
 #include <math.h>
 #include <time.h>
 
-// I3D to index into a linear memory space from a
-3D array index
+// I3D to index into a linear memory space from a 3D array index
 #define I3D(ni, nj, i, j, k) ((i) + (N)*(j) + (N)*(N)*(k)) //newcode
 
 #define N 16
