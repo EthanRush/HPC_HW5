@@ -107,7 +107,7 @@ dim3 threadsPerBlock(N,N,N);
 	//CPU calculation to check for accuracy
 for (i=1; i<N-1; i++)  
    for (j=1; j<N-1; j++)  
-           for (k=1; k<n-1; k++) {  
+           for (k=1; k<N-1; k++) {  
  a[i][j][k]=0.8*(b[i-1][j][k]+b[i+1][j][k]+b[i][j-1][k] 
  + b[i][j+1][k]+b[i][j][k-1]+b[i][j][k+1]); 
      }  
@@ -126,9 +126,9 @@ for (i=1; i<N-1; i++)
 	total = finish -start;
 	printf("Time for the CUDA execution = %4.2f milliseconds\n", total);
 
-	for (i=1; i<n-1; i++)  
-   for (j=1; j<n-1; j++)  
-     for (k=1; k<n-1; k++) {  
+	for (i=1; i<N-1; i++)  
+   for (j=1; j<N-1; j++)  
+     for (k=1; k<N-1; k++) {  
 			if(a[i][j][k] == h_a[i][j][k]){
 			continue;
 			}
