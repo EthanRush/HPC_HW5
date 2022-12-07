@@ -140,7 +140,7 @@ for (i=1; i<N-1; i++)
 				return -1;
 			}
      }  
-
+	 printf("Wow all the numbers were the same, here's proof %d == %d", a[1][2][3], h_a[292]);
 
 	// Release device memory
     cudaFree(d_a);
