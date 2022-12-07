@@ -31,7 +31,7 @@ __global__ void stencil(float *b_d, float *a_d) {
 	// find indices into linear memory for central point and neighbours
 	
 	 // i,j,k
-	 i000 = I3D(ni,nj, i, j,k);
+	 i000 = I3D(i, j,k);
 	 
 	 // i-1, j, k
 	 // i 'minus' 1, 0, 0
