@@ -8,7 +8,7 @@
 #include <time.h>
 
 // I3D to index into a linear memory space from a 3D array index
-#define I3D(ni, nj, i, j, k) ((i) + (N)*(j) + (N)*(N)*(k)) //newcode
+#define I3D(i, j, k) ((i) + (N)*(j) + (N)*(N)*(k)) //newcode
 
 #define N 16
 
@@ -22,7 +22,7 @@ double CLOCK() {
 
 // Following the HW structure, b_d is the data matrix and a_d will be the result matrix
 __global__ void stencil(float *b_d, float *a_d) {
-	int i, j, k, ti, tj, tk , i000, im100, ip100, i0m10, i0p10, i00m1, i00p1;
+	int i, j, k, i000, im100, ip100, i0m10, i0p10, i00m1, i00p1;
 	 // find i and j indices of this thread	 
 	i = blockIdx.x * blockDim.x + threadIdx.x; 
 	j = blockIdx.y * blockDim.y + threadIdx.y;
@@ -35,27 +35,27 @@ __global__ void stencil(float *b_d, float *a_d) {
 	 
 	 // i-1, j, k
 	 // i 'minus' 1, 0, 0
-	 im100 = I3D(ni,nj, i-1, j,k);
+	 im100 = I3D(i-1, j,k);
 
 	 // i+1, j,k
 	 // i 'plus' 1, 0, 0 
-	 ip100 = I3D(ni,nj, i+1, j,k);
+	 ip100 = I3D(i+1, j,k);
 
 	 // i, j-1, k
 	 // 0, j 'minus' 1, k
-	 i0m10 = I3D(ni,nj, i, j-1,k);
+	 i0m10 = I3D(i, j-1,k);
 
 	 // i, j +1, k
-	 i0p10 = I3D(ni,nj, i, j+1,k);
+	 i0p10 = I3D(i, j+1,k);
 	  
 	 // i, j, k-1
-	 i00m1 = I3D(ni,nj, i, j,k-1);
+	 i00m1 = I3D(i, j,k-1);
 
 	 // i, j, k+1
-	 i00p1 = I3D(ni,nj, i, j,k+1);
+	 i00p1 = I3D(i, j,k+1);
 
 	// checks all the variables aren't exceeding bounds (0 or outside tile)
-	if (i > 0 && i < ni-1 && j > 0 && j < nj-1 && k> 0 && k < nk-1) {
+	if (i > 0 && i < N-1 && j > 0 && j < N-1 && k> 0 && k < N-1) {
 	
 	// update temperatures
 	a[i000] =  0.8*(b[im100] + b[ip100] 
