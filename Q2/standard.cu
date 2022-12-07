@@ -90,19 +90,23 @@ dim3 threadsPerBlock(N,N,N);
     cudaMalloc(&d_b, bytes);
 
 	 int i,j,k;
-	 float a[N][N][N]=(float*)malloc(bytes);
-	 float b[N][N][N]=(float*)malloc(bytes);  
+	 float a[N][N][N], b[N][N][N];
 
-
-    // Initialize vectors on host
     for( i = 0; i < N; i++ ) {
-        h_b[i] = i;
-		b[i] = i;
+        h_b[i] = 1;
     }
 
-	
-for (i=1; i<n-1; i++)  
-   for (j=1; j<n-1; j++)  
+	for( i = 0; i < N; i++){
+		for( j = 0; j < N; j++){
+			for( k = 0 ; k < N; k++){
+				b[i][j][k] = 1;
+			}
+		}
+	}
+
+	//CPU calculation to check for accuracy
+for (i=1; i<N-1; i++)  
+   for (j=1; j<N-1; j++)  
            for (k=1; k<n-1; k++) {  
  a[i][j][k]=0.8*(b[i-1][j][k]+b[i+1][j][k]+b[i][j-1][k] 
  + b[i][j+1][k]+b[i][j][k-1]+b[i][j][k+1]); 
