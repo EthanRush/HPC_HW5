@@ -128,8 +128,10 @@ for (i=1; i<N-1; i++)
 
 	for (i=1; i<N-1; i++)  
    for (j=1; j<N-1; j++)  
-     for (k=1; k<N-1; k++) {  
-			if(a[I3D(i,j,k)] == h_a[i][j][k]){
+     for (k=1; k<N-1; k++) {
+			float op1 = a[I3D(i,j,k)];
+			float op2 = h_a[i][j][k]
+			if( op1 == op2){
 			continue;
 			}
 			else{
